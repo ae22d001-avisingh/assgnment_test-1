@@ -14,6 +14,18 @@ The first 2 numbers of the sequence are 0 and 1.
 
 ### Procedure of writing code
 
+The C++ and python files(main.cpp and main.py) are attached in the test. Students can pick and choose their preferred programming language and code. Some instructions and guidelines are written in the code files and students are requested to follow those instructions and guidelines properly. 
+
+### Testing the code
+Use the following code in the terminal window for compiling and executing C++ code:
+```
+g++ main.cpp -o run
+./run
+```
+Use the following code in the terminal window for compiling and executing python code:
+```
+python main.py
+```
 
 ### SAMPLE OUTPUT
 
