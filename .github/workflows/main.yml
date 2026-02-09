@@ -21,20 +21,20 @@ jobs:
     - name: Test case 1 (n = 5)
       run: |
         rm -f output.txt
-        echo "5" | ./fibonacci
+        echo "5" | ./main
         echo "0 1 1 2 3" > expected.txt
         diff output.txt expected.txt
 
     - name: Test case 2 (n = 1)
       run: |
         rm -f output.txt
-        echo "1" | ./fibonacci
+        echo "1" | ./main
         echo "0" > expected.txt
         diff output.txt expected.txt
 
     - name: Test case 3 (n = 10)
       run: |
         rm -f output.txt
-        echo "10" | ./fibonacci
+        echo "10" | ./main
         echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
         diff output.txt expected.txt
