@@ -1,0 +1,40 @@
+name: C++ Fibonacci File Output Test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Install compiler
+      run: sudo apt-get update && sudo apt-get install -y g++
+
+    - name: Compile Fibonacci program
+      run: g++ fibonacci.cpp -o fibonacci
+
+    - name: Test case 1 (n = 5)
+      run: |
+        rm -f output.txt
+        echo "5" | ./fibonacci
+        echo "0 1 1 2 3" > expected.txt
+        diff output.txt expected.txt
+
+    - name: Test case 2 (n = 1)
+      run: |
+        rm -f output.txt
+        echo "1" | ./fibonacci
+        echo "0" > expected.txt
+        diff output.txt expected.txt
+
+    - name: Test case 3 (n = 10)
+      run: |
+        rm -f output.txt
+        echo "10" | ./fibonacci
+        echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
+        diff output.txt expected.txt
