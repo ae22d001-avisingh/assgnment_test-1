@@ -1,4 +1,4 @@
-name: C++ Fibonacci File Output Test
+name: Fibonacci Autograder (C++ and Python)
 
 on:
   push:
@@ -9,32 +9,81 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-    - name: Install compiler
+    - name: Detect submitted language
+      id: detect
+      run: |
+        if [ -f main.cpp ]; then
+          echo "lang=cpp" >> $GITHUB_OUTPUT
+        elif [ -f main.py ]; then
+          echo "lang=python" >> $GITHUB_OUTPUT
+        else
+          echo "No valid source file found"
+          exit 1
+        fi
+
+    # ---------------- C++ ----------------
+    - name: Install g++
+      if: steps.detect.outputs.lang == 'cpp'
       run: sudo apt-get update && sudo apt-get install -y g++
 
-    - name: Compile Fibonacci program
-      run: g++ main.cpp -o main
+    - name: Compile C++ code
+      if: steps.detect.outputs.lang == 'cpp'
+      run: g++ main.cpp -o run
 
-    - name: Test case 1 (n = 5)
+    - name: Test C++ Fibonacci_1
+      if: steps.detect.outputs.lang == 'cpp'
       run: |
         rm -f output.txt
-        echo "5" | ./main
+        echo "5" | ./run
         echo "0 1 1 2 3" > expected.txt
-        diff output.txt expected.txt
-
-    - name: Test case 2 (n = 1)
+        diff -w output.txt expected.txt
+        
+    - name: Test C++ Fibonacci_2
+      if: steps.detect.outputs.lang == 'cpp'
       run: |
         rm -f output.txt
-        echo "1" | ./main
+        echo "1" | ./run
         echo "0" > expected.txt
-        diff output.txt expected.txt
-
-    - name: Test case 3 (n = 10)
+        diff -w output.txt expected.txt
+        
+    - name: Test C++ Fibonacci_3
+      if: steps.detect.outputs.lang == 'cpp'
       run: |
         rm -f output.txt
-        echo "10" | ./main
+        echo "10" | ./run
         echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
-        diff output.txt expected.txt
+        diff -w output.txt expected.txt
+
+    # ---------------- Python ----------------
+    - name: Set up Python
+      if: steps.detect.outputs.lang == 'python'
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Test Python Fibonacci_1
+      if: steps.detect.outputs.lang == 'python'
+      run: |
+        rm -f output.txt
+        echo "5" | python main.py
+        echo "0 1 1 2 3" > expected.txt
+        diff -w output.txt expected.txt
+    
+    - name: Test Python Fibonacci_1
+      if: steps.detect.outputs.lang == 'python'
+      run: |
+        rm -f output.txt
+        echo "1" | python main.py
+        echo "0" > expected.txt
+        diff -w output.txt expected.txt
+
+    
+    - name: Test Python Fibonacci_1
+      if: steps.detect.outputs.lang == 'python'
+      run: |
+        rm -f output.txt
+        echo "5" | python main.py
+        echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
+        diff -w output.txt expected.txt
