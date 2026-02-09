@@ -16,7 +16,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y g++
 
     - name: Compile Fibonacci program
-      run: g++ fibonacci.cpp -o fibonacci
+      run: g++ main.cpp -o main
 
     - name: Test case 1 (n = 5)
       run: |
