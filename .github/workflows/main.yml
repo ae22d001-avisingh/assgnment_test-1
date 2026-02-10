@@ -35,26 +35,26 @@ jobs:
     - name: Test C++ Fibonacci_1
       if: steps.detect.outputs.lang == 'cpp'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "5" | ./run
         echo "0 1 1 2 3" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
         
     - name: Test C++ Fibonacci_2
       if: steps.detect.outputs.lang == 'cpp'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "1" | ./run
         echo "0" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
         
     - name: Test C++ Fibonacci_3
       if: steps.detect.outputs.lang == 'cpp'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "10" | ./run
         echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
 
     # ---------------- Python ----------------
     - name: Set up Python
@@ -66,24 +66,24 @@ jobs:
     - name: Test Python Fibonacci_1
       if: steps.detect.outputs.lang == 'python'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "5" | python main.py
         echo "0 1 1 2 3" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
     
-    - name: Test Python Fibonacci_1
+    - name: Test Python Fibonacci_2
       if: steps.detect.outputs.lang == 'python'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "1" | python main.py
         echo "0" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
 
     
-    - name: Test Python Fibonacci_1
+    - name: Test Python Fibonacci_3
       if: steps.detect.outputs.lang == 'python'
       run: |
-        rm -f output.txt
+        rm -f Output.txt
         echo "5" | python main.py
         echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
-        diff -w output.txt expected.txt
+        diff -w Output.txt expected.txt
