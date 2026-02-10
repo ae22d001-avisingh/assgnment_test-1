@@ -36,3 +36,7 @@ Output: 0  1  1  2  3
 Test 2: n=10
 
 Output: 0  1  1  2  3  5  8  13  21  34
+
+### IMPORTANT INFORMATION
+
+__Once you have tested the code and are ready to execute the final commit, make sure that you delete the main file for the other programming language. Meaning: if you have written your code in C++, make sure that you delete main.py(python file) from the repository before the final commit and vice versa.__ 
