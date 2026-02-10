@@ -84,6 +84,6 @@ jobs:
       if: steps.detect.outputs.lang == 'python'
       run: |
         rm -f Output.txt
-        echo "5" | python main.py
+        echo "10" | python main.py
         echo "0 1 1 2 3 5 8 13 21 34" > expected.txt
         diff -w Output.txt expected.txt
